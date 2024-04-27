@@ -1,8 +1,8 @@
-![3b wt](https://github.com/umesh8412/MovieApp/assets/138427988/719ab30b-bbc6-4aa0-9c30-89b93ad9ff07)
+
 # MovieApp
 
 
-[![MovieApp Demo](https://github.com/umesh8412/MovieApp/assets/138427988/fb645631-fa93-4ce5-82f1-1183568a8705)](https://www.youtube.com/watch?v=your-video-id)
+[![MovieApp Demo](https://github.com/umesh8412/MovieApp/assets/138427988/fb645631-fa93-4ce5-82f1-1183568a8705)]
 
 
 ## Features
