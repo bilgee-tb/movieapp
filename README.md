@@ -1,3 +1,4 @@
+![3b wt](https://github.com/umesh8412/MovieApp/assets/138427988/719ab30b-bbc6-4aa0-9c30-89b93ad9ff07)
 # MovieApp
 
 
