@@ -1,6 +1,8 @@
 # MovieApp
 
-![MovieApp Logo](https://github.com/umesh8412/MovieApp/assets/138427988/fb645631-fa93-4ce5-82f1-1183568a8705)
+
+[![MovieApp Demo](https://github.com/umesh8412/MovieApp/assets/138427988/fb645631-fa93-4ce5-82f1-1183568a8705)](https://www.youtube.com/watch?v=your-video-id)
+
 
 **MovieApp** is a sleek and intuitive application built to enhance your movie-watching experience. It provides a seamless platform for discovering, exploring, and bookmarking your favorite movies.
 
