@@ -21,6 +21,21 @@
 - **Efficient Image Loading**: Employs Glide for efficient image loading, optimizing performance and reducing latency.
 - **User Authentication**: Integrates Firebase for user authentication, enabling features like login and user registration securely.
 
+- 
+## Tech Stack
+
+- **XML**: Used for UI design.
+- **Kotlin**: Implemented dynamic functionality and logic.
+- **MVVM Architecture**: Ensures a clean, modular, and scalable codebase.
+- **Dagger Hilt**: Enables efficient dependency injection.
+- **Retrofit**: Provides seamless networking capabilities.
+- **Room DB**: Stores favorite movies locally for offline access.
+- **Coroutines**: Used for asynchronous programming.
+- **Instant Search**: Implemented for quick access to relevant movie titles.
+- **Navigation Component**: Enables smooth transitions between screens via fragments.
+- **Glide**: Efficiently loads images, optimizing performance.
+- **Firebase Authentication**: Integrates user authentication securely.
+
 ## Getting Started
 
 1. **Clone the Repository**:
