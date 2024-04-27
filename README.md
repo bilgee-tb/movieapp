@@ -2,7 +2,8 @@
 # MovieApp
 
 
-![MovieApp Demo](https://github.com/umesh8412/MovieApp/assets/138427988/Video_1.gif)
+[![MovieApp Demo](https://github.com/umesh8412/MovieApp/assets/138427988/fb645631-fa93-4ce5-82f1-1183568a8705)]
+
 
 
 
