@@ -1,20 +1,13 @@
 package com.example.movieapp.adapter
 
-import android.content.Intent
-import android.text.Layout.Directions
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.movieapp.databinding.ListMoviesBinding
-import com.example.movieapp.model.genere.Genre
 import com.example.movieapp.model.popularMovie.Result
-import com.example.movieapp.ui.fragment.HomeFragment
-import com.example.movieapp.ui.fragment.HomeFragmentDirections
-import com.example.movieapp.ui.fragment.MovieDetailFragment
 import com.example.movieapp.utils.Constants
 import javax.inject.Inject
 

@@ -35,6 +35,16 @@ class GenerMovieAdapter @Inject constructor(): RecyclerView.Adapter<GenerMovieAd
             } else {
                 binding.tvGenre.setTextColor(Color.BLACK) // Change text color back to default for unselected genres
             }
+            // Handle item click
+            binding.root.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    val clickedGenre = differ.currentList[position]
+                    setSelectedGenreId(clickedGenre.id) // Update selected genre ID
+                    notifyDataSetChanged() // Notify adapter to redraw views
+                    onItemClickListener?.invoke(clickedGenre)
+                }
+            }
         }
     }
 
@@ -61,7 +71,6 @@ class GenerMovieAdapter @Inject constructor(): RecyclerView.Adapter<GenerMovieAd
 
     override fun onBindViewHolder(holder: GenerViewHolder, position: Int) {
         val genre = differ.currentList[position]
-        holder.binding.tvGenre.text = genre.name
         holder.bind(genre) // Call the bind function here
 
     }
@@ -74,6 +83,9 @@ class GenerMovieAdapter @Inject constructor(): RecyclerView.Adapter<GenerMovieAd
 
     private var selectedGenreId: Int? = null
 
+    fun getSelectedGenreId(): Int? {
+        return selectedGenreId
+    }
     fun setSelectedGenreId(genreId: Int?) {
         selectedGenreId = genreId
         notifyDataSetChanged() // Notify adapter to redraw views

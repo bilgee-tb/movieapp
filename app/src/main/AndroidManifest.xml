@@ -26,14 +26,15 @@
 
         </activity>
         <activity
-            android:name=".ui.loginAndRegister.RegisterActivity"
+            android:name=".ui.activity.authentication.registerActivity.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.loginAndRegister.LoginActivity"
+            android:name=".ui.activity.authentication.loginActivity.LoginActivity"
             android:exported="false" />
         <activity
             android:name=".ui.activity.MainActivity"
             android:windowSoftInputMode="adjustPan"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
             android:exported="true" />
     </application>
 

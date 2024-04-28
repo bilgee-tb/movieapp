@@ -1,4 +1,4 @@
-package com.example.movieapp.ui.loginAndRegister
+package com.example.movieapp.ui.activity.authentication.registerActivity
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.movieapp.databinding.ActivityRegisterBinding
 import com.example.movieapp.ui.activity.MainActivity
+import com.example.movieapp.ui.activity.authentication.loginActivity.LoginActivity
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser

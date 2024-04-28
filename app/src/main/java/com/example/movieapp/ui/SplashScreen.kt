@@ -5,13 +5,11 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.movieapp.ui.loginAndRegister.LoginActivity
+import com.example.movieapp.ui.activity.authentication.loginActivity.LoginActivity
 import com.example.movieapp.R
 import com.example.movieapp.ui.activity.MainActivity
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

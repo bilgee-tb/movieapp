@@ -1,4 +1,4 @@
-package com.example.movieapp.ui.loginAndRegister
+package com.example.movieapp.ui.activity.authentication.loginActivity
 
 import android.content.Intent
 import android.content.SharedPreferences
@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.movieapp.databinding.ActivityLoginBinding
 import com.example.movieapp.ui.activity.MainActivity
+import com.example.movieapp.ui.activity.authentication.registerActivity.RegisterActivity
 import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject

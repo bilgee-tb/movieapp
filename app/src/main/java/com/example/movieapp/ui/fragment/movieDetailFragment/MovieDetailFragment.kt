@@ -1,4 +1,4 @@
-package com.example.movieapp.ui.fragment
+package com.example.movieapp.ui.fragment.movieDetailFragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -17,7 +17,6 @@ import com.example.movieapp.R
 import com.example.movieapp.adapter.ActorsAdapter
 import com.example.movieapp.databinding.FragmentMovieDetailBinding
 import com.example.movieapp.db.MovieEntity
-import com.example.movieapp.model.movieDetails.MovieDetailResponse
 import com.example.movieapp.ui.SpaceItemDecoration
 import com.example.movieapp.utils.Constants
 import com.example.movieapp.viewmodel.ApiViewModel

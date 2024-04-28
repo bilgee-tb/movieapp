@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragment.SearchFragment">
+    tools:context=".ui.fragment.searchFragment.SearchFragment">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -48,7 +48,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvSearchMovie"
         android:layout_width="0dp"
-        android:layout_height="300dp"
+        android:layout_height="310dp"
         android:layout_margin="20dp"
         android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

@@ -11,8 +11,6 @@ import com.example.movieapp.databinding.ListActorsBinding
 import com.example.movieapp.databinding.ListGeneresBinding
 import com.example.movieapp.databinding.ListMoviesBinding
 import com.example.movieapp.model.actors.Cast
-import com.example.movieapp.model.popularMovie.Result
-import com.example.movieapp.ui.fragment.HomeFragmentDirections
 import com.example.movieapp.utils.Constants
 import javax.inject.Inject
 

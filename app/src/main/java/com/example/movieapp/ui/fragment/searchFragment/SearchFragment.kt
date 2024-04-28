@@ -1,19 +1,18 @@
-package com.example.movieapp.ui.fragment
+package com.example.movieapp.ui.fragment.searchFragment
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.SearchView
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.movieapp.R
 import com.example.movieapp.adapter.PopularMovieAdapter
-import com.example.movieapp.databinding.FragmentHomeBinding
 import com.example.movieapp.databinding.FragmentSearchBinding
 import com.example.movieapp.ui.SpaceItemDecoration
 import com.example.movieapp.viewmodel.ApiViewModel
@@ -50,8 +49,13 @@ class SearchFragment : Fragment() {
         // Set click listener for imgSearchBack
         binding.imgSearchBack.setOnClickListener {
             // Navigate back to the home fragment
-            requireActivity().supportFragmentManager.popBackStack()
+            findNavController().popBackStack(R.id.homeFragment, false)
         }
+        binding.idSV.postDelayed({
+            binding.idSV.requestFocus()
+            val imm = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.showSoftInput(binding.idSV, InputMethodManager.SHOW_IMPLICIT)
+        }, 100) // Adjust delay if needed (in milliseconds)
 
     }
 
