@@ -12,6 +12,8 @@ import com.example.movieapp.model.popularMovie.MovieResponse
 import com.example.movieapp.repository.ApiRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withTimeout
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 @HiltViewModel
@@ -53,17 +55,19 @@ class ApiViewModel @Inject constructor (private  val apiRepository: ApiRepositor
     fun loadPopularMoviesList(page: Int) = viewModelScope.launch {
         loading.postValue(true)
         try {
-            val response = apiRepository.getPopularMovies(page)
-            if (response.isSuccessful) {
-                val currentMovies = popularMovieList.value?.results ?: emptyList()
-                val newMovies = currentMovies + (response.body()?.results ?: emptyList())
-                popularMovieList.postValue(response.body()?.copy(results = newMovies))
+            withTimeout(TimeUnit.SECONDS.toMillis(30)) { // Set a timeout of 30 seconds
+                val response = apiRepository.getPopularMovies(page)
+                if (response.isSuccessful) {
+                    val currentMovies = popularMovieList.value?.results ?: emptyList()
+                    val newMovies = currentMovies + (response.body()?.results ?: emptyList())
+                    popularMovieList.postValue(response.body()?.copy(results = newMovies))
 
-                // Check if it's the last page
-                totalPages = response.body()?.total_pages ?: 0
-                isLastPage = page >= totalPages
-            } else {
-                Log.e("ApiViewModel", "Error loading popular movies: ${response.message()}")
+                    // Check if it's the last page
+                    totalPages = response.body()?.total_pages ?: 0
+                    isLastPage = page >= totalPages
+                } else {
+                    Log.e("ApiViewModel", "Error loading popular movies: ${response.message()}")
+                }
             }
         } catch (e: Exception) {
             Log.e("ApiViewModel", "Exception loading popular movies: $e")
@@ -71,7 +75,6 @@ class ApiViewModel @Inject constructor (private  val apiRepository: ApiRepositor
             loading.postValue(false)
         }
     }
-
 
 
     fun loadMoviesByGenre(with_genres :String) = viewModelScope.launch {

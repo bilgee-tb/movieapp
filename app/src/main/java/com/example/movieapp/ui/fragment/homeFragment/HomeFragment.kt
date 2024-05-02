@@ -1,10 +1,17 @@
 package com.example.movieapp.ui.fragment.homeFragment
 
+import android.content.Context
+import android.content.IntentFilter
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -12,20 +19,25 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.movieapp.R
 import com.example.movieapp.adapter.GenerMovieAdapter
 import com.example.movieapp.adapter.PopularMovieAdapter
 import com.example.movieapp.databinding.FragmentHomeBinding
+import com.example.movieapp.databinding.NoInternetBinding
 import com.example.movieapp.ui.SpaceItemDecoration
+import com.example.movieapp.utils.NetworkChangeReceiver
 import com.example.movieapp.viewmodel.ApiViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), NetworkChangeReceiver.NetworkChangeListener{
     private lateinit var binding: FragmentHomeBinding
     private val viewModel: ApiViewModel by viewModels()
+    private lateinit var networkChangeReceiver: NetworkChangeReceiver
     @Inject
     lateinit var movieAdapter: PopularMovieAdapter
+
     @Inject
     lateinit var genreAdapter: GenerMovieAdapter
     private var currentPage = 1
@@ -33,107 +45,155 @@ class HomeFragment : Fragment() {
     private var isDataLoaded = false
     private var selectedGenreId: String? = null
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Retain instance when fragment is paused
-//        retainInstance = true
-        // Inflate the layout for this fragment
-        binding= FragmentHomeBinding.inflate(layoutInflater)
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
+
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        networkChangeReceiver = NetworkChangeReceiver(this)
+        networkChangeReceiver.register(requireContext())
+
+        checkInternetConnectionAndChangeLayout()
 
 
-        setupViews()
-        observeData()
-        loadData()
-        setupListeners()
-
-        viewModel.selectedGenre.observe(viewLifecycleOwner, Observer { genre ->
-            if (genre != null) {
-                selectedGenreId = genre.id.toString()
-                binding.tvPopular.text = genre.name
-                viewModel.loadMoviesByGenre(selectedGenreId!!)
-            }
-        })
-
-
-
-        Log.i("baso", "onViewCreated: ")
-    }
-
-
-
-    override fun onResume() {
-        super.onResume()
-        selectedGenreId?.let { genreId ->
-            viewModel.loadMoviesByGenre(genreId)
-            // Update movieAdapter with loaded movies from genre
-        }
-    }
-    override fun onPause() {
-        super.onPause()
-        Log.i("baso", "onPause: ")
-    }
-
-    override fun onStop() {
-        super.onStop()
-        Log.i("baso", "onStop: ")
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        Log.i("baso", "onDestroyView: ")
+        networkChangeReceiver.unregister()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.i("baso", "onDestroy: ")
+    override fun onNetworkChanged(isConnected: Boolean) {
+        requireActivity().runOnUiThread {
+            if (isConnected) {
+                binding.animationView.visibility = View.GONE
+                binding.internetButton.visibility = View.GONE
+                binding.tvPopular.visibility = View.VISIBLE
+                binding.imgSearch.visibility = View.VISIBLE
+                initializeHomeFragment()
+            } else {
+                binding.animationView.visibility = View.VISIBLE
+                binding.internetButton.visibility = View.VISIBLE
+                binding.tvPopular.visibility = View.GONE
+                binding.imgSearch.visibility = View.GONE
+                binding.rvGenre.visibility = View.GONE
+                binding.rvMovie.visibility = View.GONE
+                initializeNoInternetLayout()
+            }
+        }
+    }
+    private fun checkInternetConnectionAndChangeLayout() {
+        if (isInternetAvailable(requireContext())) {
+            initializeHomeFragment()
+        } else {
+            // No internet, show no internet layout
+            binding.animationView.visibility = View.VISIBLE
+            binding.internetButton.visibility = View.VISIBLE
+            binding.tvPopular.visibility = View.GONE
+            binding.imgSearch.visibility = View.GONE
+            initializeNoInternetLayout()
+        }
     }
 
-    override fun onDetach() {
-        super.onDetach()
-        Log.i("baso", "onDetach: ")
+//    override fun onResume() {
+//        super.onResume()
+//        checkInternetConnectionAndChangeLayout()
+//    }
+
+    private fun isInternetAvailable(context: Context): Boolean {
+        val connectivityManager =
+            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val network = connectivityManager.activeNetwork ?: return false
+        val activeNetwork = connectivityManager.getNetworkCapabilities(network) ?: return false
+        return when {
+            activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
+            activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
+            else -> false
+        }
     }
+
+    private fun initializeHomeFragment() {
+        // Initialize views, observe data, load data, and setup listeners for home fragment
+        setupViews()
+        observeData()
+        loadData()
+        setupListeners()
+    }
+
+    private fun initializeNoInternetLayout() {
+        // Setup listeners for retry button in no internet layout
+        binding.internetButton.setOnClickListener {
+            if (isInternetAvailable(requireContext())) {
+                // Internet is available, switch to home fragment layout
+                binding.animationView.visibility = View.GONE
+                binding.internetButton.visibility = View.GONE
+                initializeHomeFragment() // Reinitialize home fragment
+            } else {
+                // Still no internet, display a message or handle it as needed
+                Toast.makeText(requireContext(), "Still no internet", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+
+    //    override fun onResume() {
+//        super.onResume()
+//        selectedGenreId?.let { genreId ->
+//            viewModel.loadMoviesByGenre(genreId)
+//            // Update movieAdapter with loaded movies from genre
+//        }
+//    }
+
+
+
 
     private fun setupViews() {
         binding.apply {
             rvGenre.apply {
                 adapter = genreAdapter
-                layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+                layoutManager =
+                    LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
                 addItemDecoration(SpaceItemDecoration(20))
             }
             rvMovie.apply {
                 adapter = movieAdapter
-                layoutManager = GridLayoutManager(requireContext(), 2, GridLayoutManager.VERTICAL, false)
+                layoutManager =
+                    GridLayoutManager(requireContext(), 2, GridLayoutManager.VERTICAL, false)
                 addItemDecoration(SpaceItemDecoration(20))
             }
         }
     }
 
     private fun observeData() {
-        viewModel.apply {
-            popularMovieList.observe(viewLifecycleOwner, Observer { movies ->
-                if (selectedGenreId.isNullOrEmpty()) {
-                    // If no genre is selected, show popular movies
-                    movieAdapter.differ.submitList(movies.results)
+        requireActivity().runOnUiThread {
+            viewModel.apply {
+                popularMovieList.observe(viewLifecycleOwner, Observer { movies ->
+                    if (selectedGenreId.isNullOrEmpty()) {
+                        // If no genre is selected, show popular movies
+                        movieAdapter.differ.submitList(movies.results)
+                    }
+                })
+                genreMoviesList.observe(viewLifecycleOwner) { movies ->
+                    if (!selectedGenreId.isNullOrEmpty()) {
+                        // If a genre is selected, show genre-based movies
+                        movieAdapter.differ.submitList(movies.results)
+                    }
                 }
-            })
-            genreMoviesList.observe(viewLifecycleOwner) { movies ->
-                if (!selectedGenreId.isNullOrEmpty()) {
-                    // If a genre is selected, show genre-based movies
-                    movieAdapter.differ.submitList(movies.results)
-                }
+                genreList.observe(viewLifecycleOwner, Observer { genres ->
+                    genreAdapter.differ.submitList(genres.genres)
+                })
             }
-            genreList.observe(viewLifecycleOwner, Observer { genres ->
-                genreAdapter.differ.submitList(genres.genres)
-            })
         }
     }
+
 
     private fun loadData() {
         if (!isDataLoaded) {
@@ -179,8 +239,6 @@ class HomeFragment : Fragment() {
                     }
                 }
             })
-
-
         }
 
         genreAdapter.setOnItemClickListener { genre ->
@@ -190,4 +248,6 @@ class HomeFragment : Fragment() {
 
         }
     }
+
+
 }

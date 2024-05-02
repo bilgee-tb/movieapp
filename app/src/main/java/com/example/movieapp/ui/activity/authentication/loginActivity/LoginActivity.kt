@@ -48,40 +48,6 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
-//    private fun login() {
-//        val email = binding.etEmail.text.toString().trim()
-//        val password = binding.etPassword.text.toString().trim()
-//
-//        // Input Validation - Check for empty or null fields
-//        if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
-//            // Improved Error Handling with Specific Messages
-//            val errorMessage = when {
-//                TextUtils.isEmpty(email) && TextUtils.isEmpty(password) -> {
-//                    "Please enter your email and password."
-//                }
-//
-//                TextUtils.isEmpty(email) -> "Please enter your email address."
-//                TextUtils.isEmpty(password) -> "Please enter your password."
-//                else -> "An unknown error occurred." // Fallback for unexpected issues
-//            }
-//
-//
-//            // On successful login, store login status in SharedPreferences
-//            auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this) { task ->
-//                if (task.isSuccessful) {
-//                    // Sign in success, update UI with the signed-in user's information
-//                    val user = auth.currentUser
-//                    Toast.makeText(this, "Login successful.", Toast.LENGTH_SHORT).show()
-//                    navigateToMainActivity()
-//                } else {
-//                    // If sign in fails, display a message to the user.
-//                    Toast.makeText(baseContext, "Authentication failed.", Toast.LENGTH_SHORT).show()
-//                }
-//            }
-//        }
-//
-//
-//    }
 
     private fun login() {
         val email = binding.etEmail.text.toString().trim()
