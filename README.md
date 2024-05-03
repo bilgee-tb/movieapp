@@ -50,6 +50,12 @@ Once the project is successfully imported and dependencies are resolved, follow 
 4. **Wait for the application to build and deploy to the selected device**.
 5. **Once the installation is complete, the application will automatically launch on the emulator or device**.
 
-https://github.com/umesh8412/MovieApp/assets/138427988/620e8c83-1074-4ed7-a9bd-b6b7de5987b6
-https://github.com/umesh8412/MovieApp/assets/138427988/82d10203-52a8-479c-b1e9-c288c4e65f38
+
+
+https://github.com/umesh8412/MovieApp/assets/138427988/df78a921-b7f3-4769-a41c-3069247ed75c
+
+
+
+https://github.com/umesh8412/MovieApp/assets/138427988/7cf9dfd2-1ff9-441f-8671-d012158616d4
+
 
