@@ -1,20 +1,14 @@
 
 # MovieApp
 
-
-[![MovieApp Demo](https://github.com/umesh8412/MovieApp/assets/138427988/fb645631-fa93-4ce5-82f1-1183568a8705)]
-
-
-
-
 ## Features
 
-- **Popukar Movie Feed**
+- **Feed with Popukar Movies  and user selected genre based Movies**
 - **Search Movies**
 - **User Authentication like LogIn and RegiterUser**
 - **Movie Details**
 - **Save your Favorite movie and Delete and Undo the favourite movies**
--  
+
 ## Tech Stack
 
 - **XML**: Used for UI design.
@@ -55,3 +49,6 @@ Once the project is successfully imported and dependencies are resolved, follow 
 3. **Choose the emulator or device you want to run the application on**.
 4. **Wait for the application to build and deploy to the selected device**.
 5. **Once the installation is complete, the application will automatically launch on the emulator or device**.
+
+https://user-images.githubusercontent.com/108933534/227724659-0d568136-4edd-4866-83dc-768fd09181ee.mp4
+   
