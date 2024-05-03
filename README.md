@@ -52,8 +52,9 @@ Once the project is successfully imported and dependencies are resolved, follow 
 
 https://user-images.githubusercontent.com/108933534/227724659-0d568136-4edd-4866-83dc-768fd09181ee.mp4
 
-https://github.com/umesh8412/MovieApp/assets/138427988/def8271e-6816-41a2-be17-77c54c5256fa.mp4
-https://github.com/umesh8412/MovieApp/assets/138427988/7b67f982-870f-4ab6-9a28-51e1858a18fa.mp4
+https://github.com/umesh8412/MovieApp/assets/138427988/fe3445fd-8821-43e9-b9f3-b28a0a7aa59c
+https://github.com/umesh8412/MovieApp/assets/138427988/d113739d-8b32-40f7-a6aa-85801481ca24
+
+https://github.com/umesh8412/MovieApp/assets/138427988/620e8c83-1074-4ed7-a9bd-b6b7de5987b6
 
 
-   
