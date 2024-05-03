@@ -3,7 +3,7 @@
 
 ## Features
 
-- **Feed with Popukar Movies  and user selected genre based Movies**
+- **Feed with Popular Movies  and user selected genre based Movies**
 - **Search Movies**
 - **User Authentication like LogIn and RegiterUser**
 - **Movie Details**
