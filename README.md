@@ -11,7 +11,7 @@
 
 ## Tech Stack
 
-- **XML**: Used for UI design.
+- **XML**: Used for UI design
 - **Kotlin**: Implemented dynamic functionality and logic.
 - **MVVM Architecture**: Ensures a clean, modular, and scalable codebase.
 - **Dagger Hilt**: Enables efficient dependency injection.
