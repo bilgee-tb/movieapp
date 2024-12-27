@@ -24,9 +24,3 @@
 Сэтгэгдэл үлдээх /Writing review
 Дуртай киноны жагсаалт үүсгэх/Favorite movies list
 Үзэх хүслийн жагсаалт/ Watch movies list
-
-
-
-https://github.com/umesh8412/MovieApp/assets/138427988/7cf9dfd2-1ff9-441f-8671-d012158616d4
-
-
