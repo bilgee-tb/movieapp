@@ -23,7 +23,6 @@ import com.example.movieapp.R
 import com.example.movieapp.adapter.GenerMovieAdapter
 import com.example.movieapp.adapter.PopularMovieAdapter
 import com.example.movieapp.databinding.FragmentHomeBinding
-import com.example.movieapp.databinding.NoInternetBinding
 import com.example.movieapp.ui.SpaceItemDecoration
 import com.example.movieapp.utils.NetworkChangeReceiver
 import com.example.movieapp.viewmodel.ApiViewModel
